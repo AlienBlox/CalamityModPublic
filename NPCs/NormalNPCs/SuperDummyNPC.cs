@@ -118,6 +118,17 @@ namespace CalamityMod.NPCs.NormalNPCs
             }
         }
 
+        public override void HitEffect(NPC.hitInfo hit) 
+        {
+            if (NPC.Life <= 0) 
+            {
+                if (Main.Netmode != NetmodeID.MultiplayerClient) 
+                {
+                    NPC.NewNPC(NPC.GetSource_FromAI(), NPC.Center.X, NPC.Center.Y, ModContent.NPCType<SuperDummyNPC>());
+                }
+            }
+        }
+
         public override bool CheckDead()
         {
             if (NPC.lifeRegen < 0)
